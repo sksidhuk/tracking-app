@@ -1,6 +1,37 @@
-# MonoWorkspace
+# 🌐 Angular Microfrontend Architecture
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+
+## Overview
+
+- To achive Microfrontend Architechure there are two federation plugins available.
+    - module-federation
+    - Native-federation
+    
+In this app, we are creating it using Native Federation plugin.
+ - For Microfrontend Architecture, should have HOST (from where we will drive the other apps e.g employee).
+ - To drive other app from the HOST, we need to load the Component from the app route.
+
+
+## Steps to create Microfrontend Architechure. 
+Run this cmd `ng g mono-workspace --create-application=false` to create empty workspace without /src folder.
+
+### Steps to Create Host and remote applications
+Run this cmd `ng g application admin --prefix app-admin` to create first application that will act as a HOST later
+
+Run this cmd `ng g application employee --prefix app-employee` to create remote application
+
+## Install Federation Plugin
+
+Run this cmd `npm i -D @angular=architects/native-federation@18` to install the plugin
+
+
+
+## Steps to make the app HOST and assign Port number
+Run this cmd `ng g @angular-architects/native-federation:init --project admin --port 4200 --type dynamic-host`
+
+
 
 ## Development server
 
