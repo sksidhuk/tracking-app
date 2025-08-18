@@ -15,44 +15,39 @@ In this app, we are creating it using Native Federation plugin.
 
 
 ## Steps to create Microfrontend Architechure. 
-Run this cmd `ng g mono-workspace --create-application=false` to create empty workspace without /src folder.
+Run this cmd `ng g mono-workspace --create-application=false` to create empty workspace without /src folder. This workspace will contain HOST and remote apps.
 
 ### Steps to Create Host and remote applications
-Run this cmd `ng g application admin --prefix app-admin` to create first application that will act as a HOST later
+Run this cmd `ng g application admin --prefix app-admin` to create first application that will act as a HOST later.
 
-Run this cmd `ng g application employee --prefix app-employee` to create remote application
+Run this cmd `ng g application employee --prefix app-employee` to create remote application.
 
 ## Install Federation Plugin
 
-Run this cmd `npm i -D @angular=architects/native-federation@18` to install the plugin
-
+Run this cmd `npm i -D @angular=architects/native-federation@18` to install the plugin. @ shows the version need to be installed. If you are running latest version of angular, then federation plugin can be installed without using @version_name. It will automatically install the latest version.
 
 
 ## Steps to make the app HOST and assign Port number
-Run this cmd `ng g @angular-architects/native-federation:init --project admin --port 4200 --type dynamic-host`
+`ng g @angular-architects/native-federation:init --project admin --port 4200 --type dynamic-host` This command will make your project "admin" to HOST.
 
+## Steps to make the app remote and assign Port number
+`ng g @angular-architects/native-federation:init --project employee --port 4201 --type remote` This command will make your project "employee" to remote.
 
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve admin` to run admin app. Navigate to `http://localhost:4200/`. 
+and run `ng serve employee` to run remote app. Navigate to `http://localhost:4201/`. 
 
-## Code scaffolding
+## Change 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Change port number for remote app in HOST App (admin/public/federation.manifest.json) `federation.manifest.json` file. In this project, remote app is set to 4201 port so port will be `"employee": "http://localhost:4201/remoteEntry.json"`
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## app-routes.ts file modification
+Use this code in app-routes.ts file of host to run the remote app Component.
+{
+        path: 'employee',
+        loadComponent: () =>
+            loadRemoteModule('employee', './Component').then((m: any) => m.AppComponent),
+    }
