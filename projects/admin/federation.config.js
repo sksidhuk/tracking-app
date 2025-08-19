@@ -1,9 +1,13 @@
 const { withNativeFederation, shareAll } = require('@angular-architects/native-federation/config');
 
 module.exports = withNativeFederation({
-
+  name: 'admin',
+  remotes: {
+    'employee': 'http://localhost:4201/remoteEntry.js',  // 👈 remote name matches
+  },
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+    '@shared/core': { singleton: true, requiredVersion: 'auto' }
   },
 
   skip: [
@@ -16,5 +20,5 @@ module.exports = withNativeFederation({
 
   // Please read our FAQ about sharing libs:
   // https://shorturl.at/jmzH0
-  
+
 });

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    @if (message) {
+                    <div class="p-3 mb-4 rounded" [ngClass]="['text-bg-'+ message.type]">{{message.text}}</div>
+                    }
+                    <form [formGroup]="employee" (ngSubmit)="onRegister()">
+                        <div class=" col-md-6 mb-3">
+                            <label for="firstN=name" class="form-label">Full
+                                Name</label>
+                            <input type="text" class="form-control" formControlName="fullName">
+                            <div id="emailHelp" class="form-text">Enter the full name as per Government ID.</div>
+
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" formControlName="email">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="phone" class="form-label">Phone</label>
+                            <input type="number" class="form-control" name="phone" formControlName="phone">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" formControlName="password" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="exampleInputCPassword2" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" name="cpassword" formControlName="cpassword">
+                        </div>
+
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

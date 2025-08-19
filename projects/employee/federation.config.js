@@ -5,7 +5,7 @@ module.exports = withNativeFederation({
   name: 'employee',
 
   exposes: {
-    './Component': './projects/employee/src/app/app.component.ts',
+    './Component': './src/app/app.component.ts',
   },
 
   shared: {
@@ -22,5 +22,5 @@ module.exports = withNativeFederation({
 
   // Please read our FAQ about sharing libs:
   // https://shorturl.at/jmzH0
-  
+
 });
