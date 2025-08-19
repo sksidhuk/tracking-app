@@ -15,7 +15,7 @@ In this app, we are creating it using Native Federation plugin.
 
 
 ## Steps to create Microfrontend Architechure. 
-Run this cmd `ng g mono-workspace --create-application=false` to create empty workspace without /src folder. This workspace will contain HOST and remote apps.
+Run this cmd `ng g mono-workspace --create-application=false` to create empty workspace without /src folder. This workspace will contain HOST and remote app under mono-workspace empty application.
 
 ### Steps to Create Host and remote applications
 Run this cmd `ng g application admin --prefix app-admin` to create first application that will act as a HOST later.
@@ -47,7 +47,8 @@ Change port number for remote app in HOST App (admin/public/federation.manifest.
 ## app-routes.ts file modification
 Use this code in app-routes.ts file of host to run the remote app Component.
 {
-        path: 'employee',
+    path: 'employee',
         loadComponent: () =>
             loadRemoteModule('employee', './Component').then((m: any) => m.AppComponent),
-    }
+}
+This code will allow the remote app to run by HOST.
